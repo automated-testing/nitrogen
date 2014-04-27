@@ -1,2 +1,2 @@
-nitrogen
+Nitrogen Testing Framework
 ========
