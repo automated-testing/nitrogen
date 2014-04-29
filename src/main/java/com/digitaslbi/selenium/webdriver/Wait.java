@@ -14,7 +14,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class Wait {
 
-    public static void forAllAJAXRequestsToFinish() {
+    public void forAllAJAXRequestsToFinish() {
         waitUntil(new WaitCondition() {
             @Override
             public void apply() {
@@ -28,7 +28,7 @@ public class Wait {
         });
     }
 
-    private static void waitUntil(WaitCondition waitCondition) {
+    private void waitUntil(WaitCondition waitCondition) {
         try {
             waitCondition.apply();
         } catch (TimeoutException e) {
@@ -36,7 +36,7 @@ public class Wait {
         }
     }
 
-    public static void untilElementIsClickable(final By by){
+    public void untilElementIsClickable(final By by){
         waitUntil(new WaitCondition() {
             int matchingElementCount;
 
@@ -57,7 +57,7 @@ public class Wait {
      * TODO:
      * Controls ONLY — Move to separate class.
      */
-    public static void untilControlIsVisible(final WebElement element, final String description) {
+    public void untilControlIsVisible(final WebElement element, final String description) {
         waitUntil(new WaitCondition() {
             @Override
             public void apply() {
@@ -72,7 +72,7 @@ public class Wait {
         });
     }
 
-    public static void untilElementIsDisplayed(final By by, final String description) {
+    public void untilElementIsDisplayed(final By by, final String description) {
         waitUntil(new WaitCondition() {
             @Override
             public void apply() {
@@ -87,7 +87,7 @@ public class Wait {
         });
     }
 
-    public static void untilElementIsPresent(final By by, final String description) {
+    public void untilElementIsPresent(final By by, final String description) {
         waitUntil(new WaitCondition() {
             @Override
             public void apply() {
@@ -102,7 +102,7 @@ public class Wait {
         });
     }
 
-    public static <T extends BaseElement>void untilElementIsDisplayed(final Class<T> clazz) {
+    public <T extends BaseElement>void untilElementIsDisplayed(final Class<T> clazz) {
         final By elementLocator = getElementLocator(clazz);
         waitUntil(new WaitCondition() {
             @Override
@@ -117,7 +117,7 @@ public class Wait {
         });
     }
 
-    public static <T extends BaseElement>void untilElementIsHidden(final Class<T> clazz) {
+    public <T extends BaseElement>void untilElementIsHidden(final Class<T> clazz) {
         final By elementLocator = getElementLocator(clazz);
         waitUntil(new WaitCondition() {
             @Override
@@ -133,7 +133,7 @@ public class Wait {
     }
 
 
-    private static <T extends BaseElement> By getElementLocator(Class<T> clazz) {
+    private <T extends BaseElement> By getElementLocator(Class<T> clazz) {
         try {
             return (By) clazz.getField(BaseElement.LOCATOR_FIELD).get(By.class);
         } catch (Exception e) {
@@ -142,7 +142,7 @@ public class Wait {
         return null;
     }
 
-    public static void untilPageUrlHasChanged(final String sourceUrl) {
+    public void untilPageUrlHasChanged(final String sourceUrl) {
         waitUntil(new WaitCondition() {
             @Override
             public void apply() {

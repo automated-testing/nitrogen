@@ -45,6 +45,7 @@ public class BaseElement {
     public static final String FIELD_IN = "field in ";
     public static final String WITHIN = " within ";
     private WebElement currentElement;
+    protected Wait wait = new Wait();
 
     public BaseElement(WebElement webElement, String description) {
         this.currentElement = webElement;
@@ -98,11 +99,11 @@ public class BaseElement {
      * Only applicable to controls, which have to be in the page & waiting for visibility.
      */
     protected void waitUntilControlIsVisible(WebElement element, String description) {
-        Wait.untilControlIsVisible(element, description);
+        wait.untilControlIsVisible(element, description);
     }
 
     protected void waitUntilElementIsAvailable(By by, String description) {
-        Wait.untilElementIsDisplayed(by, description);
+        wait.untilElementIsDisplayed(by, description);
     }
 
     public void exists() {
@@ -200,7 +201,7 @@ public class BaseElement {
 
     public void submit() {
         currentElement.submit();
-        Wait.untilPageUrlHasChanged(getUrl());
+        wait.untilPageUrlHasChanged(getUrl());
     }
 
     public void sendKeys(CharSequence... keysToSend) {

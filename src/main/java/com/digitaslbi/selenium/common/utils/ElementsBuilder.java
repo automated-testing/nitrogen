@@ -4,6 +4,7 @@ import com.digitaslbi.selenium.Failures;
 import com.digitaslbi.selenium.common.controls.BaseElement;
 import com.digitaslbi.selenium.common.exceptions.MissingConstructorDeclarationException;
 import com.digitaslbi.selenium.common.exceptions.MissingFieldDeclarationException;
+import com.digitaslbi.selenium.webdriver.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -22,11 +23,11 @@ import java.util.List;
  */
 public class ElementsBuilder {
 
-    private WaitWrapper waitWrapper;
+    private Wait wait;
     private ElementsFinder elementsFinder;
 
     public ElementsBuilder(){
-        waitWrapper = new WaitWrapper();
+        wait = new Wait();
         elementsFinder = new ElementsFinder();
     }
 
@@ -34,7 +35,7 @@ public class ElementsBuilder {
         By locator = getLocatorField(clazz);
         String description = getDescriptionField(clazz);
 
-        waitWrapper.untilElementIsDisplayed(locator, description);
+        wait.untilElementIsDisplayed(locator, description);
         WebElement element = elementsFinder.findComponentElement(locator);
 
         return instantiate(clazz, description, element);
@@ -44,7 +45,7 @@ public class ElementsBuilder {
         By locator = getLocatorField(clazz);
         String description = getDescriptionField(clazz);
 
-        waitWrapper.untilElementIsPresent(locator, description);
+        wait.untilElementIsPresent(locator, description);
         WebElement element = elementsFinder.findComponentElement(locator);
 
         return instantiate(clazz, description, element);
@@ -81,7 +82,7 @@ public class ElementsBuilder {
 
     private WebElement findElement(BaseElement parent, By locator, String childDescription) {
         WebElement element = elementsFinder.findChildElement(locator, parent.getWebElement());
-        waitWrapper.untilControlIsVisible(element, childDescription);
+        wait.untilControlIsVisible(element, childDescription);
         return element;
     }
 
@@ -95,7 +96,7 @@ public class ElementsBuilder {
                 iterator.remove();
                 continue;
             }
-            waitWrapper.untilControlIsVisible(webElement, childDescription);
+            wait.untilControlIsVisible(webElement, childDescription);
         }
         return elements;
     }
@@ -166,8 +167,8 @@ public class ElementsBuilder {
         return method.getReturnType().equals(By.class);
     }
 
-    public void setWaitWrapper(WaitWrapper waitWrapper) {
-        this.waitWrapper = waitWrapper;
+    public void setWait(Wait wait) {
+        this.wait = wait;
     }
 
     public void setElementsFinder(ElementsFinder elementsFinder) {
