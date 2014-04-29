@@ -20,10 +20,8 @@ public class NitrogenFirefoxDriver extends FirefoxDriver implements Quitable {
 
     /**
      * TODO
-     * The exception is being caught here as a temporary measure as the javascript core metrics
-     * library is sending an HTTP request we can't explicitly wait until it completes as the
-     * core metrics API doesn't seem to be using the main jQuery object that the rest of the page
-     * uses.
+     * Catching any unfinished AJAX requests that are still pending after the test has finised (non-jQuery)
+     * More robust solution should be found.
      */
     public void threadQuit() {
         try{
