@@ -1,4 +1,6 @@
 ---
 language: java
-install: mvn clean install -Dweb.driver=phantomjs
+before_install:
+  - "export DISPLAY=:1.0"
+  - "sh -e /etc/init.d/xvfb start"
 ...
