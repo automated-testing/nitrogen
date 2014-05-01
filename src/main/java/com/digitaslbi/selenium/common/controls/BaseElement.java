@@ -27,12 +27,6 @@ public class BaseElement {
     private String currentElementDescription;
     private static final Log log = LogFactory.getLog(BaseElement.class);
 
-
-    /**
-     * TODO
-     * Need to remove the driver instance from BaseElement. Any sub-classes that are using it should
-     * resort to the ElementsBuilder instead to create elements.
-     */
     protected RemoteWebDriver driver = RemoteWebDriverFactory.instance();
 
     private String url;
