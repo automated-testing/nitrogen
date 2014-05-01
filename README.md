@@ -52,11 +52,11 @@ Coding Conventions (DRAFT):
  - Act
  - Assert
 - ***StaleElementReferenceException*** is your fault!
- - When creating new classes to represent any form controls or components on the page, one thing to keep in mind that instances of these classes should model a form element or a particular component in a certain state, e.g. A disabled next button on a shopping basket. Instead of saying 
-        nextButton.isDisabled(), 
-we go and create a new instance of a next button that it is a representation of its disabled state, e.g. 
+ - When creating new classes to represent any form controls or components on the page, one thing to keep in mind that instances of these classes should model a form element or a particular component in a certain state, e.g. With a disabled button, instead of saying 
+        button.isDisabled(), 
+we would create a new instance of the button that it is a representation of its disabled state, e.g. 
 
-          new DisabledNextStepButton();
+          new DisabledButton();
 
 - When assigning a description to the elements, that need to only include a descriptive name of what the element represent, without any extra wording.
 
