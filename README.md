@@ -8,7 +8,7 @@ The framework goes into a great deal with whittling down any intermittent and wh
 
   - Elements are not present or completely displayed in the DOM at the moment where the WebDriver API tries to interact with them from within the tests.
   - AJAX responses that are received after the tests have been terminated, which could potentially leads to a test failure even though there seems to be nothing particularly wrong with the functionality being tested.
-  - The dreaded ***StaleElementException*** that usually happens when the WebDriver API tried to interact with a DOM element that is not present in the DOM anymore due to a previous interaction that led to the removal of that element from the DOM instance held by the WebDriver.
+  - The dreaded `StaleElementException` that usually happens when the WebDriver API tried to interact with a DOM element that is not present in the DOM anymore due to a previous interaction that led to the removal of that element from the DOM instance held by the WebDriver.
 
 Features
 -----------
@@ -27,7 +27,7 @@ Coding Conventions (DRAFT):
 
 *More in-depth examples to follow*
 
-- **Everything extends from BaseElement:** Everything is a BaseElement, from a validation error to a submit button to a whole form on a page to the page itself.
+- **Everything extends from BaseElement:** Everything is a `BaseElement`, from a validation error to a submit button to a whole form on a page to the page itself.
  - **Tests only interact with component-level classes:** The JUnit tests themselves should always interact with Component-Level classes, any interaction with a child of a particular component should happen through the component itself and never directly from the test.
 - **There are 4 levels of abstraction:**
     - Test classes
@@ -37,7 +37,7 @@ Coding Conventions (DRAFT):
 - **Tests should carry out actions, not asserts** Asserts needed by a journey are verified by the component methods used and embeded within.
     - Components and elements should assert state.
 - **Strictly apply the "Tell don't ask principle" in components and child elements.**
-- **Assertion should use the JUnit assertThat() method "only".**
+- **Assertion should use the JUnit `assertThat()` method "only".**
 - Methods whose only action is an assert should follow the naming convention:
 
         public void shouldXYZ();
@@ -46,17 +46,14 @@ Coding Conventions (DRAFT):
  - Component & element methods model specs
 - Tests should only interact with components, not controls
 - CSS selectors used to locate instances of BaseElement(s) should only be defined inside their respective classes. No css selectors should be defined anywhere else in the code to avoid duplication of css selectors scattered around in the code base.
-- WebDriver API should not be used directly from within the framework, instead the services they provide are wrapped inside framework-specific classes, e.g. BaseElement & WebDriverRemoteFactory.
+- WebDriver API should not be used directly from within the framework, instead the services they provide are wrapped inside framework-specific classes, e.g. `BaseElement` & `WebDriverRemoteFactory`.
 - Tests should follow the following structure:
  - Arrange
  - Act
  - Assert
-- ***StaleElementReferenceException*** is your fault!
- - When creating new classes to represent any form controls or components on the page, one thing to keep in mind that instances of these classes should model a form element or a particular component in a certain state, e.g. With a disabled button, instead of saying 
-        button.isDisabled(), 
-we would create a new instance of the button that it is a representation of its disabled state, e.g. 
-
-          new DisabledButton();
+- `StaleElementReferenceException` is your fault!
+ - When creating new classes to represent any form controls or components on the page, one thing to keep in mind that instances of these classes should model a form element or a particular component in a certain state, e.g. With a disabled button, instead of saying `button.isDisabled()`, 
+we would create a new instance of the button that it is a representation of its disabled state, e.g. `new DisabledButton();`
 
 - When assigning a description to the elements, that need to only include a descriptive name of what the element represent, without any extra wording.
 
