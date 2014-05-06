@@ -78,4 +78,4 @@ Thanks to [Digitas LBi] for allowing us to open-source this framework.
 
 [Semantic versioning]:http://semver.org
 [Digitas LBi]:http://www.digitaslbi.com
-[Travis]:https://travis-ci.org/automated-testing/nitrogen
+[Travis CI]:https://travis-ci.org/automated-testing/nitrogen
