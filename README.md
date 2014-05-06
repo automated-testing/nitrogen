@@ -63,6 +63,10 @@ Versioning
 This project is using [Semantic Versioning] & currently in a Beta release.
 
 
+Continuous Integration
+----
+CI builds are provided by [Travis CI], where compilation & test results can be checked.
+
 License
 ----
 
@@ -74,4 +78,4 @@ Thanks to [Digitas LBi] for allowing us to open-source this framework.
 
 [Semantic versioning]:http://semver.org
 [Digitas LBi]:http://www.digitaslbi.com
-
+[Travis]:https://travis-ci.org/automated-testing/nitrogen
