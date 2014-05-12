@@ -13,10 +13,6 @@ import org.junit.runner.Description;
 
 import java.io.File;
 
-/**
- * TODO
- * Tidy up this class.
- */
 public class SpecificationLoggerWatcher extends TestWatcher {
     private static final Log log = LogFactory.getLog(SpecificationLoggerWatcher.class);
     public static final String SPECS_BASE_DIRECTORY = System.getProperty("specs.base.dir");
