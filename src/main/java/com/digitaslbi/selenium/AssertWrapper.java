@@ -9,7 +9,6 @@ public class AssertWrapper {
 
     private static final Log log = LogFactory.getLog(AssertWrapper.class);
 
-    //TODO: Move this to a more appropriate class
     public static String formatClassName(Object object) {
         return String.format("'%s'", injectSpacesIntoClassNameFor(object.getClass()));
     }
@@ -22,7 +21,7 @@ public class AssertWrapper {
             return formatClassName(object);
         }
     }
-    //TODO: Move this to a more appropriate class
+
     public static String formatClassName(Class clazz) {
         return String.format("'%s'", injectSpacesIntoClassNameFor(clazz));
     }
@@ -165,7 +164,7 @@ public class AssertWrapper {
 
     @Deprecated
     public static <T> void assertThat(T actual, org.hamcrest.Matcher<? super T> matcher) {
-//        logNoMessage();//TODO Do we really need this??
+        logNoMessage();
         Assert.assertThat(actual, matcher);
     }
 

@@ -53,10 +53,6 @@ public class Wait {
         });
     }
 
-    /**
-     * TODO:
-     * Controls ONLY — Move to separate class.
-     */
     public void untilControlIsVisible(final WebElement element, final String description) {
         waitUntil(new WaitCondition() {
             @Override

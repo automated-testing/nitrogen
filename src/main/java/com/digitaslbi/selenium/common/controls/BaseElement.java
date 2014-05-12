@@ -87,11 +87,6 @@ public class BaseElement {
         this.url = url;
     }
 
-    /**
-     * TODO:
-     * Should be separated from regular wait.
-     * Only applicable to controls, which have to be in the page & waiting for visibility.
-     */
     protected void waitUntilControlIsVisible(WebElement element, String description) {
         wait.untilControlIsVisible(element, description);
     }

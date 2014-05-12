@@ -11,12 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 
-/**
- * TODO
- * As this class is meant to control the creation of instances of WebDriver created throughout the framework, there
- * is a subtle bug in it which enables the creation of more than one instance of WebDriver if the client code invokes
- * the initBrowser() method directly. This need to be fixed.
- */
 public class RemoteWebDriverFactory {
 
     public static final String PHANTOMJS = "phantomjs";
