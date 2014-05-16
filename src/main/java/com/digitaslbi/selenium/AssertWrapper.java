@@ -1,6 +1,5 @@
 package com.digitaslbi.selenium;
 
-import com.digitaslbi.selenium.common.controls.BaseElement;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
@@ -9,27 +8,6 @@ public class AssertWrapper {
 
     private static final Log log = LogFactory.getLog(AssertWrapper.class);
 
-    //TODO: Move this to a more appropriate class
-    public static String formatClassName(Object object) {
-        return String.format("'%s'", injectSpacesIntoClassNameFor(object.getClass()));
-    }
-
-    public static String extractDescription(Object object){
-        if(object instanceof BaseElement){
-            return ((BaseElement) object).getDescription();
-        }
-        else {
-            return formatClassName(object);
-        }
-    }
-    //TODO: Move this to a more appropriate class
-    public static String formatClassName(Class clazz) {
-        return String.format("'%s'", injectSpacesIntoClassNameFor(clazz));
-    }
-
-    private static String injectSpacesIntoClassNameFor(Class clazz) {
-        return clazz.getSimpleName().replaceAll("([a-z])([A-Z])", "$1 $2");
-    }
 
     private static void logAssert(String message) {}
 
