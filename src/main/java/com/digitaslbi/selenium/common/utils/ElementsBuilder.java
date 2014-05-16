@@ -14,13 +14,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * TODO
- * Re-visit the exception handling logic in general for the whole framework as well as
- * producing meaningful error messages when we are unable to find an element when we have
- * a wrong locator or the case in which that the wanted element is not present (for some reason)
- * in the DOM.
- */
 public class ElementsBuilder {
 
     private Wait wait;

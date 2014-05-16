@@ -18,11 +18,6 @@ public class NitrogenFirefoxDriver extends FirefoxDriver implements Quitable {
         super(profile);
     }
 
-    /**
-     * TODO
-     * Catching any unfinished AJAX requests that are still pending after the test has finised (non-jQuery)
-     * More robust solution should be found.
-     */
     public void threadQuit() {
         try{
             super.quit();

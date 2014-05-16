@@ -8,7 +8,6 @@ public class AssertWrapper {
 
     private static final Log log = LogFactory.getLog(AssertWrapper.class);
 
-
     private static void logAssert(String message) {}
 
     private static void logNoMessage() {}
@@ -143,7 +142,7 @@ public class AssertWrapper {
 
     @Deprecated
     public static <T> void assertThat(T actual, org.hamcrest.Matcher<? super T> matcher) {
-//        logNoMessage();//TODO Do we really need this??
+        logNoMessage();
         Assert.assertThat(actual, matcher);
     }
 

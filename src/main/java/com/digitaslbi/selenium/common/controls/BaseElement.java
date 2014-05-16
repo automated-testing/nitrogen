@@ -28,12 +28,6 @@ public class BaseElement {
     private static final Log log = LogFactory.getLog(BaseElement.class);
     private ClassNameFormatter classNameFormatter = new ClassNameFormatter();
 
-
-    /**
-     * TODO
-     * Need to remove the driver instance from BaseElement. Any sub-classes that are using it should
-     * resort to the ElementsBuilder instead to create elements.
-     */
     protected RemoteWebDriver driver = RemoteWebDriverFactory.instance();
 
     private String url;
@@ -94,11 +88,6 @@ public class BaseElement {
         this.url = url;
     }
 
-    /**
-     * TODO:
-     * Should be separated from regular wait.
-     * Only applicable to controls, which have to be in the page & waiting for visibility.
-     */
     protected void waitUntilControlIsVisible(WebElement element, String description) {
         wait.untilControlIsVisible(element, description);
     }
