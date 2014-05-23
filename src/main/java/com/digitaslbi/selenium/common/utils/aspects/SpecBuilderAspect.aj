@@ -1,6 +1,6 @@
 package com.digitaslbi.selenium.common.utils.aspects;
 
-import com.digitaslbi.selenium.AssertWrapper;
+import com.digitaslbi.selenium.ClassNameFormatter;
 import com.digitaslbi.selenium.Url;
 import com.digitaslbi.selenium.common.controls.BaseElement;
 import com.digitaslbi.selenium.webdriver.ScreenShooter;
@@ -22,6 +22,7 @@ public aspect SpecBuilderAspect {
     public static final String CLOSE_LI_OPEN_OL = CLOSE_LI + "<ol>";
     public static final String OPEN_LI = "<li>";
     public static final String SPACE = " ";
+    private ClassNameFormatter classNameFormatter = new ClassNameFormatter();
 
     pointcut logAssertMessage(String message):
             call(static void com.digitaslbi.selenium.AssertWrapper.logAssert(..)) && args(message);
@@ -51,18 +52,17 @@ public aspect SpecBuilderAspect {
         (execution(* com.digitaslbi.selenium..*exists*(..))) && target(baseElement);
 
     before(Object object): baseElementShould(object) {
-        log.info(String.format("%s%s %s.%s", OPEN_LI, AssertWrapper.extractDescription(object), injectSpacesIntoMethodNameFor(thisJoinPoint), CLOSE_LI));
+        log.info(String.format("%s%s %s.%s", OPEN_LI, classNameFormatter.extractDescription(object), classNameFormatter.injectSpacesIntoCamelCasedName(getJoinPointName(thisJoinPoint)), CLOSE_LI));
+    }
+    private String getJoinPointName(JoinPoint thisJoinPoint) {
+        return thisJoinPoint.getSignature().getName();
     }
 
     pointcut testShould():
         execution(void com.digitaslbi.selenium.customerservice.CustomerServiceTest.select_booked_flight_from_any_other_questions_page_and_submit_invalid_data());
 
     before(): testShould() {
-        log.info(String.format("%s%s.%s", OPEN_LI, injectSpacesIntoMethodNameFor(thisJoinPoint), CLOSE_LI));
-    }
-
-    private static String injectSpacesIntoMethodNameFor(JoinPoint joinPoint) {
-        return joinPoint.getSignature().getName().replaceAll("([a-z])([A-Z])", "$1 $2").toLowerCase();
+        log.info(String.format("%s%s.%s", OPEN_LI, classNameFormatter.injectSpacesIntoCamelCasedName(getJoinPointName(thisJoinPoint)), CLOSE_LI));
     }
 
     before(Url url): openPage(url) {

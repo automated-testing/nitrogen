@@ -2,6 +2,7 @@ package com.digitaslbi.selenium.common.controls;
 
 
 import com.digitaslbi.selenium.AssertWrapper;
+import com.digitaslbi.selenium.ClassNameFormatter;
 import com.digitaslbi.selenium.Failures;
 import com.digitaslbi.selenium.webdriver.RemoteWebDriverFactory;
 import com.digitaslbi.selenium.webdriver.Wait;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.digitaslbi.selenium.AssertWrapper.assertThat;
-import static com.digitaslbi.selenium.AssertWrapper.formatClassName;
 import static com.digitaslbi.selenium.Failures.failOnFound;
 import static com.digitaslbi.selenium.Failures.failOnNotFound;
 import static org.hamcrest.CoreMatchers.is;
@@ -26,6 +26,7 @@ public class BaseElement {
 
     private String currentElementDescription;
     private static final Log log = LogFactory.getLog(BaseElement.class);
+    private ClassNameFormatter classNameFormatter = new ClassNameFormatter();
 
     protected RemoteWebDriver driver = RemoteWebDriverFactory.instance();
 
@@ -120,7 +121,7 @@ public class BaseElement {
     }
 
     public <T extends BaseElement> void shouldHaveChildElement(Class<T> clazz) {
-        AssertWrapper.assertThat("Should have a " + formatClassName(clazz) + IN + getDescription(), hasChildElement(clazz), is(true));
+        AssertWrapper.assertThat("Should have a " + classNameFormatter.formatClassName(clazz) + IN + getDescription(), hasChildElement(clazz), is(true));
         if (!hasChildElement(clazz)) {
             failOnNotFound(clazz.getSimpleName() + IN + getDescription());
         }
