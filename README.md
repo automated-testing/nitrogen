@@ -63,6 +63,20 @@ Versioning
 This project is using [Semantic Versioning] & currently in a Beta release.
 
 
+Branching and merging strategy:
+----
+
+On this project we are following the shared repository model for the current phase of development, the single repository hosted on GitHub represents our shared repository that developers with commit right clone and push completed work to.
+
+If you are willing to contribute to the project, we advise that you fork the Nitrogen repository and open pull requests for any contributions that you are willing to make.
+
+The branching and merging model is inspired by the work done by [Vincent Driessen]. We have 3 main branches that we work with:
+
+- The "master" branch: This branch has an infinite timeline. Every single commit on this branch represents a specific versioned release or any hotfix for a particular release.
+- The "development" branch: This branch is similar to the "master" branch in that it has an infinite timeline. Commits on the "development" branch are usually a result of a merged feature branch. Once the development for a specific release has been completed and the development branch reached to a production-stable state, then it should be merged into the "master" branch alongside the the creation of a tag that marks this specific release.
+- The "feature" branch: Feature or topic branches are usually originated from the latest tagged release from the "master" branch, however that there is no real problem (at least for this project) from creating feature branches from a stable "development" branch. As a best practise and to guarantee a fresh start for each feature branch, we should always aim to branch of the latest tagged release from the "master" branch.
+Once the work has been completed on a given feature branch, then it needs to be merged into the development branch with the no fast-forward option selected (--no-ff) to make it easier to track the commits related to a particular feature and to be able to easilt cherry pick those for painless revert if that is so desired. Feature branches need to be pushed into the origin (GitHub repo in this case) to facilitate the creation of the pull request to get them merged into the "development" branch.
+
 Continuous Integration
 ----
 CI builds are provided by [Travis CI], where compilation & test results can be checked.
@@ -79,3 +93,4 @@ Thanks to [Digitas LBi] for allowing us to open-source this framework.
 [Semantic versioning]:http://semver.org
 [Digitas LBi]:http://www.digitaslbi.com
 [Travis CI]:https://travis-ci.org/automated-testing/nitrogen
+[Vincent Driessen]: http://nvie.com/posts/a-successful-git-branching-model
